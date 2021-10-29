@@ -1,3 +1,5 @@
+# Team B: KEIO University Project by KEIO University(KEIO AIC) x NVIDIA collaboration
+
 ## Usage
 Execute the following command on the host(jetson)
 ```
