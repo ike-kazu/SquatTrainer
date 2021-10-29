@@ -1,5 +1,5 @@
 ## Usage
-Execute the following command on the host
+Execute the following command on the host(jetson)
 ```
 $ docker pull tlapesium/traintraing:latest
 $ sudo bash docker_run.sh
