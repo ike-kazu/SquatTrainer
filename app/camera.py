@@ -37,4 +37,4 @@ class Camera(Singleton):
             raise RuntimeError('Could not read image from camera')
 
     def get_frame(self):
-        return True, ML().execute(self.read()[1])
+        return True, ML().execute(self.read()[1])#, ML().draw_objects.isDone
