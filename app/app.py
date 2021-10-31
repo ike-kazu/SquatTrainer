@@ -5,6 +5,7 @@ import cv2
 
 app = Flask(__name__)
 
+isDone  =False
 
 @app.route("/")
 def index():
@@ -14,7 +15,7 @@ def index():
 def stream():
     return render_template("stream.html")
 
-def gen_video(camera):
+def gen_video(camera, isVideo):
     """Video streaming generator function."""
     while True:
         success, image = camera.get_frame()
@@ -22,17 +23,46 @@ def gen_video(camera):
            break
         
         ret, frame = cv2.imencode(".jpg", image)
+        """ if(isDone):
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n"
+            )
+            #return 'OK!'
+        else:
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n"
+            )
+            #return 'No!' """
+        """ if(isVideo):
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n"
+            )
+        else:
+            yield (isDone) """
+
         yield (
-            b"--frame\r\n"
-            b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n"
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + frame.tobytes() + b"\r\n"
         )
+
+            
 
 @app.route("/video_feed")
 def video_feed():
     cam = Camera()
     return Response(
-        gen_video(cam), mimetype="multipart/x-mixed-replace; boundary=frame"
+        gen_video(cam, True), mimetype="multipart/x-mixed-replace; boundary=frame"
     )
+
+""" @app.route("/isDone")
+def isDone():
+    cam = Camera()
+    return Response(
+        gen_video(cam, False)
+    ) """
 
 
 @app.route("/kill_camera")
