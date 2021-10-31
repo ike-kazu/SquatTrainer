@@ -38,4 +38,3 @@ class Camera(Singleton):
 
     def get_frame(self):
         return True, ML().execute(self.read()[1])
-
