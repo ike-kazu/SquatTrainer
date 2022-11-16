@@ -1,5 +1,8 @@
 # Team B: KEIO University Project by KEIO University(KEIO AIC) x NVIDIA collaboration
 
+## Introduce
+https://drive.google.com/file/d/1CpK1Yv0tZLDfgETRy_-hBVJuCNgEH77u/view?usp=sharing
+
 ## Usage
 Execute the following command on the host(jetson)
 ```
